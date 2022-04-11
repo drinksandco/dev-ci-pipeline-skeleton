@@ -21,7 +21,9 @@
     "phpstan/phpstan": "^1.5",
     "vimeo/psalm": "^4.22",
     "phpunit/phpunit": "^9.5",
-    "phpro/grumphp": "^1.10"
+    "phpro/grumphp": "^1.10",
+    "infection/infection": "^0.26.6",
+    "rector/rector": "^0.12.20"
   },
   "scripts": {
     "precommit-check": [
@@ -30,10 +32,21 @@
       "@inspect",
       "@psalm"
     ],
+    "check-all": [
+      "@cs-check",
+      "@test",
+      "@inspect",
+      "@psalm",
+      "@infection",
+      "@rector-check"
+    ],
     "cs-check": "ecs check src",
     "cs-fix": "ecs check src --fix",
     "inspect": "phpstan analyse src -l9 --ansi",
     "test": "phpunit --colors=always",
-    "psalm": "psalm"
+    "psalm": "psalm",
+    "infection": "XDEBUG_MODE=coverage infection",
+    "rector": "rector process src",
+    "rector-check": "rector process src --dry-run"
   }
 }
