@@ -1,0 +1,39 @@
+{
+  "name": "drinksandco/test-dev-ci",
+  "description": "Test development continuous integration pipeline",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "TestDevCi\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TestDevCi\\Test\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "^8.1"
+  },
+  "require-dev": {
+    "symplify/easy-coding-standard": "^10.1",
+    "phpstan/phpstan": "^1.5",
+    "vimeo/psalm": "^4.22",
+    "phpunit/phpunit": "^9.5",
+    "phpro/grumphp": "^1.10"
+  },
+  "scripts": {
+    "precommit-check": [
+      "@cs-check",
+      "@test",
+      "@inspect",
+      "@psalm"
+    ],
+    "cs-check": "ecs check src",
+    "cs-fix": "ecs check src --fix",
+    "inspect": "phpstan analyse src -l9 --ansi",
+    "test": "phpunit --colors=always",
+    "psalm": "psalm"
+  }
+}
